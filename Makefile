@@ -6,22 +6,24 @@
 #    By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/11 11:53:26 by jcharloi          #+#    #+#              #
-#    Updated: 2017/05/16 16:10:52 by jcharloi         ###   ########.fr        #
+#    Updated: 2017/06/01 15:36:26 by jcharloi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
+MFLAGS = -framework OpenGL -framework Appkit
 NAME = jcharloi.filler
 
 SRC_PATH = ./sources/
-SRC_NAME = filler.c placepiece.c
+SRC_NAME = filler.c change_piece.c place_piece.c ennemy.c mlx.c
 OBJ_PATH = ./objects/
 OBJ_NAME = $(SRC_NAME:.c=.o)
 LIB_PATH = ./sources/libft/libft.a
 
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
 LIB = ./sources/libft/
+MLX = ./mlxE3/
 
 YELLOW = "\033[38;5;228m"
 ORANGE = "\033[38;5;214m"
@@ -36,16 +38,18 @@ all: creation
 	@make $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) -o $(NAME) $(LIB_PATH) $(OBJ) $(CFLAGS)
+	@$(CC) -o $(NAME) $(OBJ) $(LIB_PATH) -L $(MLX) -lmlx $(MFLAGS) $(CFLAGS)
 	@echo $(GREEN)"Done, you can now work on your filler, GLHF ! ✅"$(EOC)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@$(CC) -o $@ -c $< $(CFLAGS)
+	@$(CC) -o $@ -c $< -I$(MLX) $(CFLAGS)
 	@echo $(PURPLE)"Your ./$@. file is ready to work !"$(EOC)
 
 creation:
 	@make -C sources/libft/
 	@echo $(ORANGE)"Your $(LIB_PATH) is (al)ready (ready) to work !"$(EOC)
+	@make -C $(MLX)
+	@echo $(ORANGE)"Your libmlx.a is (al)ready (ready) to work !"$(EOC)
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@echo $(BLUE)"Your $(OBJ_PATH) folder is (al)ready (ready) to work !"$(EOC)
 

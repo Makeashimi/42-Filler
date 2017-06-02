@@ -6,7 +6,7 @@
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 17:09:11 by jcharloi          #+#    #+#             */
-/*   Updated: 2017/05/05 11:58:41 by jcharloi         ###   ########.fr       */
+/*   Updated: 2017/06/02 17:36:14 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,11 @@ int					ft_size(unsigned long n, unsigned int base);
 int					whatsize(wchar_t c);
 void				print_wchart(wchar_t c);
 void				ft_putwchart(wchar_t *str);
+
+/*
+** Library used for filler
+*/
+
+int					ft_abs(int nb);
 
 #endif

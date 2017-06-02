@@ -6,7 +6,7 @@
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 13:57:51 by jcharloi          #+#    #+#             */
-/*   Updated: 2017/05/19 16:45:32 by jcharloi         ###   ########.fr       */
+/*   Updated: 2017/06/02 21:42:31 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <math.h>
 # include "libft/libft.h"
+# include "../mlxE3/mlx.h"
 
-typedef struct	s_env
+typedef struct	s_pos
 {
 	char	player;
 	int		y_board;
@@ -30,12 +32,37 @@ typedef struct	s_env
 	char	**board;
 	char	**piece;
 	char	*forme;
+	int		xbefore;
+	int		ybefore;
 	int		x;
 	int		y;
+	int		ennemy_x;
+	int		ennemy_y;
+	int		distance;
+}				t_pos;
+
+typedef struct	s_env
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*data;
+	int		bits;
+	int		size;
+	int		endian;
+	int		color;
+	int		zoom;
+	int		zoom_y;
 }				t_env;
 
 void			filler();
-void			check_piece1(t_env *env);
-void			check_piece2(t_env *env);
+void			drawtab(t_env *env, t_pos *pos);
+void			piece(t_pos *pos, t_env *env);
+void			count_min_piece(t_pos *pos);
+void			piece_to_top(t_pos *pos);
+void			count_max_piece(t_pos *pos);
+void			find_the_ennemy(t_pos *pos);
+void			write_image(t_env *env, t_pos *pos);
+int				init_window(t_env *env);
 
 #endif

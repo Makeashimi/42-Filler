@@ -6,7 +6,7 @@
 #    By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/11 16:15:21 by jcharloi          #+#    #+#              #
-#    Updated: 2017/05/05 12:11:31 by jcharloi         ###   ########.fr        #
+#    Updated: 2017/06/02 17:35:27 by jcharloi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,8 @@ SRC = 	ft_memset.c \
 		ft_len.c \
 		ft_signedbase.c \
 		ft_unsignedbase.c \
-		ft_print_wchart.c
+		ft_print_wchart.c \
+		ft_abs.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
