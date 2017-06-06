@@ -6,7 +6,7 @@
 #    By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/11 11:53:26 by jcharloi          #+#    #+#              #
-#    Updated: 2017/06/01 15:36:26 by jcharloi         ###   ########.fr        #
+#    Updated: 2017/06/06 17:20:15 by jcharloi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ MFLAGS = -framework OpenGL -framework Appkit
 NAME = jcharloi.filler
 
 SRC_PATH = ./sources/
-SRC_NAME = filler.c change_piece.c place_piece.c ennemy.c mlx.c
+SRC_NAME = filler.c play_game.c change_piece.c ennemy.c mlx.c
 OBJ_PATH = ./objects/
 OBJ_NAME = $(SRC_NAME:.c=.o)
 LIB_PATH = ./sources/libft/libft.a
@@ -49,7 +49,7 @@ creation:
 	@make -C sources/libft/
 	@echo $(ORANGE)"Your $(LIB_PATH) is (al)ready (ready) to work !"$(EOC)
 	@make -C $(MLX)
-	@echo $(ORANGE)"Your libmlx.a is (al)ready (ready) to work !"$(EOC)
+	@echo $(ORANGE)"Your $(MLX)libmlx.a is (al)ready (ready) to work !"$(EOC)
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@echo $(BLUE)"Your $(OBJ_PATH) folder is (al)ready (ready) to work !"$(EOC)
 
@@ -66,4 +66,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY : all, creation, clean, fclean, re
+norme:
+	norminette $(SRC_PATH)*.c $(LIB)*.c $(SRC_PATH)*.h $(LIB)*.h
+
+.PHONY : all, creation, clean, fclean, re, norminette

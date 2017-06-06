@@ -6,16 +6,16 @@
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 16:11:28 by jcharloi          #+#    #+#             */
-/*   Updated: 2017/06/01 11:06:36 by jcharloi         ###   ########.fr       */
+/*   Updated: 2017/06/05 12:26:47 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void	write_image(t_env *env, t_pos *pos)
+void	write_image(t_env *env, t_game *game)
 {
-	if ((pos->x * 10) >= 0 && (pos->y * 10) >= 0 && (pos->x * 10) < 1000 && (pos->y * 10) < 1000)
-		ft_memcpy(&env->data[((pos->y * env->size) + (pos->x * 4)) * 10], &env->color, 4);
+	if ((game->x * 10) >= 0 && (game->y * 10) >= 0 && (game->x * 10) < 1000 && (game->y * 10) < 1000)
+		ft_memcpy(&env->data[((game->y * env->size) + (game->x * 4)) * 10], &env->color, 4);
 }
 
 static int	destroymouse(t_env *env)
@@ -36,25 +36,25 @@ static int	destroykey(int keycode, t_env *env)
 	return (0);
 }
 
-void		drawtab(t_env *env, t_pos *pos)
+void		drawtab(t_env *env, t_game *game)
 {
 	int		y;
 	int		x;
 
 	y = 0;
 	env->zoom = 20;
-	while (y < pos->y_board)
+	while (y < game->y_board)
 	{
 		x = 0;
-		while (pos->board[y][x] != '\0')
+		while (game->board[y][x] != '\0')
 		{
-			if (pos->board[y][x] == 'O')
+			if (game->board[y][x] == 'O')
 			{
 				env->color = 0xF8F8FF;
 				if ((x * env->zoom) >= 0 && (y * env->zoom) >= 0 && (x * env->zoom) < 1000 && (y * env->zoom) < 1000)
 					ft_memcpy(&env->data[((y * env->size) + (x * 4)) * env->zoom], &env->color, 4);
 			}
-			if (pos->board[y][x] == 'X')
+			if (game->board[y][x] == 'X')
 			{
 				env->color = 0xABC8E2;
 				if ((x * env->zoom) >= 0 && (y * env->zoom) >= 0 && (x * env->zoom) < 1000 && (y * env->zoom) < 1000)
@@ -64,7 +64,7 @@ void		drawtab(t_env *env, t_pos *pos)
 				}
 
 			}
-			else if (pos->board[y][x] == '.')
+			else if (game->board[y][x] == '.')
 			{
 				env->color = 0xA8ACA8;
 				if ((x * env->zoom) >= 0 && (y * env->zoom) >= 0 && (x * env->zoom) < 1000 && (y * env->zoom) < 1000)
